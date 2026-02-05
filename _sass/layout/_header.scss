@@ -53,7 +53,7 @@
     }
 
     nav > ul > li:hover {
-        background: #ccc;
+        background: var(--bg-dark);
     }
 
     .subnav {
@@ -114,7 +114,7 @@
         }
 
         nav > ul > li {
-            border-bottom: 1px solid #e0e0e0;
+            border-bottom: 1px solid var(--border);
         }
 
         div.search {
@@ -214,7 +214,7 @@
                 left: 0;
                 right: 0;
                 bottom: 0;
-                background-color: #ccc;
+                background-color: var(--muted);
                 transition: .4s;
                 border-radius: 34px;
             }
@@ -226,13 +226,13 @@
                 width: 26px;
                 left: 4px;
                 bottom: 4px;
-                background-color: white;
+                background-color: var(--bg-light);
                 transition: .4s;
                 border-radius: 50%;
             }
 
             input:checked + .slider {
-                background-color: #2196F3;
+                background-color: var(--accent);
             }
 
             input:checked + .slider:before {
