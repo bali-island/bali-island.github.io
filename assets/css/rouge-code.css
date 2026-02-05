@@ -2,7 +2,7 @@ div.highlight {
     width: 100%;
     margin-left: 1px;
     background: #49483e url('../img/monokaibg.jpg') top left;
-    color: white;
+    color: var(--heading);;
     padding: 5px 5px 5px 15px;
     border-radius: 5px;
     overflow: auto;
@@ -15,7 +15,7 @@ div.highlight code {
 
 td.code {
     width: 100%;
-    color: white;
+    color: var(--heading);;
     border-radius: 5px;
 }
 
