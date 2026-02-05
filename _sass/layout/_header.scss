@@ -4,7 +4,7 @@
  * ----------------------------------------------------------------------------------------
  */
 #l-header {
-    background-color: var(--bg);
+    background-color: var(--border-2); /* Always deep darkest navy */
     color: var(--heading);
 
     h1 {
@@ -27,7 +27,7 @@
     }
 
     .navbar {
-        background-color: var(--bg-light);
+        background-color: var(--bg);
 
         i {
             position: absolute;
@@ -173,15 +173,15 @@
             top: 0;
             width: 100%;
             padding-top: 0;
-            background-color: var(--bg-light);
+            background-color: var(--bg);
         }
 
         nav > ul > li {
             text-align: center;
-            background-color: rgba(37, 57, 69, 1);
+            background-color: var(--bg);
             width: 100%;
             margin-right: 2rem;
-            border-bottom: 1px solid #e0e0e0;
+            border-bottom: 1px solid var(--border);
         }
 
         nav > ul > li:hover {
