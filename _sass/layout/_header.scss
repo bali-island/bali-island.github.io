@@ -5,7 +5,7 @@
  */
 #l-header {
     background-color: var(--border-2); /* Always deep darkest navy */
-    color: var(--heading);
+    color: var(--logo-text); /* Always light color for logo */
 
     h1 {
         margin-top: 0rem;
@@ -13,13 +13,14 @@
         font: normal small-caps bold 17rem/17rem "verdana",helvetica, sans-serif;
         letter-spacing: -0.7rem;
         margin-left: -2rem;
+        color: var(--logo-text); /* Always light color for logo */
     }
 
         p {
             font: normal bold 3rem/3rem "verdana",sans-serif;
             text-align: right;
             margin: 3rem;
-            color: var(--heading);
+            color: var(--logo-text); /* Always light color for logo */
     }
 
     li > a {
@@ -27,13 +28,13 @@
     }
 
     .navbar {
-        background-color: var(--bg);
+        background-color: var(--nav-bg); /* Nav background same as cards */
 
         i {
             position: absolute;
             top: 1.9rem;
             right: 2.5rem;
-            color: var(--text);
+            color: var(--nav-text);
         }
     }
 
@@ -50,10 +51,12 @@
         line-height: 5rem;
         border-right: 1px solid var(--border);
         padding: 0;
+        color: var(--nav-text);
     }
 
     nav > ul > li:hover {
         background: var(--bg-dark);
+        color: var(--text);
     }
 
     .subnav {
@@ -64,12 +67,13 @@
         display: none;
         position: relative;
         z-index: 100;
-        border-top: 1px solid var(--heading);
-        background-color: var(--surface);
+        border-top: 1px solid var(--border);
+        background-color: var(--nav-bg);
+        color: var(--nav-text);
     }
 
     .subnav li:hover {
-        background-color: var(--muted-3);
+        background-color: var(--bg-light);
     }
 
     .subnav:hover li {
@@ -185,11 +189,12 @@
         }
 
         .subnav li {
-            background: var(--muted-2);
+            background: var(--nav-bg);
+            color: var(--nav-text);
         }
 
         .subnav li:hover {
-            background: var(--muted-2-dark);
+            background: var(--bg-light);
         }
 
         .navicon {
@@ -203,23 +208,25 @@
             top: 0;
             width: 100%;
             padding-top: 0;
-            background-color: var(--bg);
+            background-color: var(--nav-bg);
         }
 
         nav > ul > li {
             text-align: center;
-            background-color: var(--bg);
+            background-color: var(--nav-bg);
             width: 100%;
             margin-right: 2rem;
             border-bottom: 1px solid var(--border);
+            color: var(--nav-text);
         }
 
         nav > ul > li:hover {
             background: var(--bg-dark);
+            color: var(--text);
         }
 
         .search {
-            background-color: var(--bg);
+            background-color: var(--nav-bg);
             padding-bottom: 1rem;
         }
 

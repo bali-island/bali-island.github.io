@@ -21,6 +21,9 @@
   --muted-2-dark: #5c3010;
   --muted-3: #183691;
   --panel-shadow: rgba(0,0,0,0.08);
+  --logo-text: #fffbed; /* Light color for logo */
+  --nav-bg: var(--surface); /* Nav background same as cards */
+  --nav-text: var(--text); /* Nav text color */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -42,6 +45,9 @@
     --muted-2-dark: #30363d;
     --muted-3: #8b949e;
     --panel-shadow: rgba(0,0,0,0.5);
+    --logo-text: #fffbed; /* Light color for logo */
+    --nav-bg: var(--surface); /* Nav background same as cards */
+    --nav-text: var(--text); /* Nav text color */
   }
 }
 
@@ -64,6 +70,9 @@
   --muted-2-dark: #30363d;
   --muted-3: #8b949e;
   --panel-shadow: rgba(0,0,0,0.5);
+  --logo-text: #fffbed; /* Light color for logo */
+  --nav-bg: var(--surface); /* Nav background same as cards */
+  --nav-text: var(--text); /* Nav text color */
 }
 
 [data-theme="light"] {
@@ -84,4 +93,7 @@
   --muted-3: #183691;
   --panel-shadow: rgba(0,0,0,0.08);
   --border-2: #1C3340;
+  --logo-text: #fffbed; /* Light color for logo */
+  --nav-bg: var(--surface); /* Nav background same as cards */
+  --nav-text: var(--text); /* Nav text color */
 }
