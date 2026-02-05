@@ -1,6 +1,7 @@
 :root {
   /* Core (Dark theme as default anchors) */
   --bg: #2B2B2C;           /* page background */
+  --bg-dark: #1f1f1f;      /* Темный вариант bg */
   --surface: #262627;      /* cards, panels */
   --bg-light: #FFFFFF;     /* light backgrounds */
   --text-dark: #000000;    /* dark text colors */
@@ -19,6 +20,7 @@
   --code-muted: #c7cbb6;
   /* Additional neutrals/tones used in styles */
   --muted-2: #6b7280;
+  --muted-2-dark: #4b5563; /* Темный вариант muted-2 */
   --muted-3: #9ca3af;
   --panel-shadow: rgba(0,0,0,0.5);
 }

@@ -159,7 +159,7 @@
         }
 
         .subnav li:hover {
-            background: darken(var(--muted-2), 5);
+            background: var(--muted-2-dark);
         }
 
         .navicon {
@@ -185,7 +185,7 @@
         }
 
         nav > ul > li:hover {
-            background: darken(var(--bg), 5);
+            background: var(--bg-dark);
         }
 
         .search {
