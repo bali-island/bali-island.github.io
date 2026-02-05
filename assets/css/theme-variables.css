@@ -26,8 +26,8 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --bg: #0d1117;
-    --surface: #161b22;
-    --text: #c9d1d9;
+    --surface: #21262d;
+    --text: #f0f6fc;
     --muted: #8b949e;
     --heading: #f0f6fc;
     --border: #30363d;
@@ -48,8 +48,8 @@
 /* Theme switcher styles */
 [data-theme="dark"] {
   --bg: #0d1117;
-  --surface: #161b22;
-  --text: #c9d1d9;
+  --surface: #21262d;
+  --text: #f0f6fc;
   --muted: #8b949e;
   --heading: #f0f6fc;
   --border: #30363d;
