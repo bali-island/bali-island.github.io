@@ -29,7 +29,6 @@
 
     .navbar {
         background-color: var(--nav-bg); /* Nav background same as cards */
-        max-width: 60%;
 
         i {
             position: absolute;
@@ -37,6 +36,10 @@
             right: 2.5rem;
             color: var(--nav-text);
         }
+    }
+
+    nav {
+        max-width: 60%;
     }
 
     .navicon {
