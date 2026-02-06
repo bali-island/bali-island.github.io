@@ -1,7 +1,7 @@
 :root {
   /* Core (Light theme as default) */
   --bg: #ffffff;
-  --surface: #ffffff;
+  --surface: rgba(255, 255, 255, 0.08); /* Card surface - rgba for both themes */
   --bg-dark: #1a1a1a;
   --bg-light: #f5f5f5;
   --text-dark: #000000;
@@ -22,8 +22,32 @@
   --muted-3: #183691;
   --panel-shadow: rgba(0,0,0,0.08);
   --logo-text: #fffbed; /* Light color for logo */
-  --nav-bg: var(--surface); /* Nav background same as cards */
-  --nav-text: var(--text); /* Nav text color */
+  
+  /* Navbar */
+  --nav-bg: var(--surface);
+  --nav-text: var(--text);
+  --nav-hover-bg: rgba(0, 0, 0, 0.05); /* Light mode hover */
+  --nav-border: rgba(0, 0, 0, 0.1); /* Light mode border */
+  --nav-shadow: rgba(0, 0, 0, 0.1); /* Light mode shadow */
+  
+  /* Dropdown */
+  --dropdown-bg: var(--surface);
+  --dropdown-text: var(--text);
+  --dropdown-hover-bg: rgba(0, 0, 0, 0.05); /* Light mode hover */
+  --dropdown-border: rgba(0, 0, 0, 0.1); /* Light mode border */
+  --dropdown-shadow: rgba(0, 0, 0, 0.1); /* Light mode shadow */
+  
+  /* Search */
+  --search-bg: var(--surface);
+  --search-text: var(--text);
+  --search-border: rgba(0, 0, 0, 0.1); /* Light mode border */
+  --search-shadow: rgba(0, 0, 0, 0.1); /* Light mode shadow */
+  
+  /* Sidebar */
+  --sidebar-bg: var(--surface);
+  --sidebar-text: var(--text);
+  --sidebar-hover-bg: rgba(0, 0, 0, 0.05); /* Light mode hover */
+  --sidebar-border: rgba(0, 0, 0, 0.1); /* Light mode border */
 }
 
 @media (prefers-color-scheme: dark) {

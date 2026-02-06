@@ -8,6 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         const icon = themeToggle.querySelector('i');
         
+        // Apply color scheme from config (sys-ui, linux, custom)
+        const colorScheme = 'sys-ui'; // This would be injected by Jekyll from _config.yml
+        document.body.setAttribute('data-color-scheme', colorScheme);
+        
         if (savedTheme === 'light') {
             document.body.setAttribute('data-theme', 'light');
             icon.classList.remove('fa-moon-o');

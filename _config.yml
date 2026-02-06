@@ -28,6 +28,9 @@ shout: # Required: **TWO** lines, will be displayed on page's header.
   - жарю с бандитами
 description: "" # Required
 
+# Color scheme configuration
+color_scheme: "sys-ui" # options: sys-ui, linux, custom
+
 disqus:
   comments: false # Global toggle on/off disqus comment
   shortname:  # Required if you use disqus. Replace with your disqus shortname here
