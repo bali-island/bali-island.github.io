@@ -205,6 +205,13 @@ ul.tags {
     margin: 0 !important;
 }
 
+#markdown-outline {
+    position: sticky;
+    top: 5%;
+    left: auto;
+    z-index: 10;
+}
+
 .tags li {
     float: left;
     margin-left: 1rem;
