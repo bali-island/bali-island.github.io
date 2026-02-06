@@ -29,6 +29,7 @@
 
     .navbar {
         background-color: var(--nav-bg); /* Nav background same as cards */
+        max-width: 60%;
 
         i {
             position: absolute;
@@ -43,14 +44,13 @@
     }
 
     nav > ul > li {
-        width: 25%;
-        // height: 5rem;
+        width: auto;
         float: left;
         text-align: center;
         font-size: 2rem;
         line-height: 5rem;
         border-right: 1px solid var(--border);
-        padding: 0;
+        padding: 0 1.5rem;
         color: var(--nav-text);
     }
 
@@ -83,9 +83,10 @@
     #search-input {
         height: 3rem;
         margin-top: 1rem;
+        margin-right: 3rem;
         width: 100%;
         border: 0;
-        border-radius: 45px;
+        border-radius: 4.5rem;
         padding-left: 2rem;
         color: var(--text);
         border: 1px solid var(--border);
