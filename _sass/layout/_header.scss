@@ -113,8 +113,10 @@
         float: right;
         display: flex;
         align-items: center;
+        justify-content: flex-end; /* ADD: Align items to the right */
         gap: 1rem;
         z-index: 1000; /* Ensure it's above other elements */
+        padding-right: 1rem; /* ADD: Right padding for spacing */
     }
 
     .search {
@@ -145,15 +147,22 @@
 
     .search-icon {
         position: absolute;
-        right: 0.5rem;
+        right: 0.8rem;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 2.4rem;
+        height: 2.4rem;
         background: none;
         border: none;
         color: var(--search-text);
         cursor: pointer;
-        padding: 0.5rem;
+        padding: 0;
         border-radius: 50%;
         transition: all 0.3s ease;
         z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .search-icon:hover {
@@ -162,7 +171,8 @@
     }
 
     .search-icon i {
-        font-size: 1.6rem;
+        font-size: 1.4rem;
+        line-height: 1;
     }
 
     #search-input:focus {
@@ -175,6 +185,7 @@
 
     .theme-switcher {
         .theme-toggle-button {
+            position: relative; /* ADD: Required for z-index to work */
             background: none;
             border: none;
             color: var(--logo-text); /* Same color as header title */
@@ -184,6 +195,9 @@
             border-radius: 4px;
             transition: all 0.3s ease;
             z-index: 1000; /* Ensure it's above other elements */
+            display: flex; /* ADD: For proper icon alignment */
+            align-items: center; /* ADD: Vertical center */
+            justify-content: center; /* ADD: Horizontal center */
 
             &:hover {
                 color: var(--accent);
