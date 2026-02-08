@@ -165,8 +165,7 @@
         color: var(--text);
     }
 
-    .subnav:hover li,
-    .subnav li:hover {
+    .subnav:hover li {
         opacity: 1;
         visibility: visible;
         transform: translateY(0);
