@@ -66,6 +66,10 @@
         overflow: hidden;
     }
 
+    nav > ul > li a {
+        text-decoration: none;
+    }
+
     /* Slide-in underline effect */
     nav > ul > li::after {
         content: '';
@@ -110,6 +114,7 @@
         color: var(--muted); /* Not hover = muted */
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         position: relative;
+        text-decoration: none;
     }
 
     /* Dropdown arrow indicator */
@@ -132,34 +137,38 @@
 
     .subnav li {
         display: block;
-        position: relative;
-        z-index: 1000; /* Higher z-index to be above side panel */
+        position: absolute;
+        z-index: 1000;
         border-top: 1px solid var(--dropdown-border);
         background-color: var(--dropdown-bg);
         color: var(--dropdown-text);
-        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 0 2px 4px var(--dropdown-shadow);
-        padding: 0 2rem; /* Add left and right padding */
+        transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1), transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.25s;
+        box-shadow: 0 4px 12px var(--dropdown-shadow);
+        padding: 0 2rem;
         line-height: 4rem;
         opacity: 0;
+        visibility: hidden;
         transform: translateY(-10px);
         pointer-events: none;
+        min-width: 180px;
+        left: 0;
+        top: 100%;
     }
 
     /* Staggered animation delays for dropdown items */
-    .subnav li:nth-child(1) { transition-delay: 0ms; }
-    .subnav li:nth-child(2) { transition-delay: 50ms; }
-    .subnav li:nth-child(3) { transition-delay: 100ms; }
-    .subnav li:nth-child(4) { transition-delay: 150ms; }
+    .subnav li:nth-child(1) { transition-delay: 0ms; top: 100%; }
+    .subnav li:nth-child(2) { transition-delay: 50ms; top: calc(100% + 4rem); }
+    .subnav li:nth-child(3) { transition-delay: 100ms; top: calc(100% + 8rem); }
+    .subnav li:nth-child(4) { transition-delay: 150ms; top: calc(100% + 12rem); }
 
     .subnav li:hover {
         background-color: var(--dropdown-hover-bg);
         color: var(--text);
-        transform: translateX(4px);
     }
 
     .subnav:hover li {
         opacity: 1;
+        visibility: visible;
         transform: translateY(0);
         pointer-events: auto;
     }
@@ -404,18 +413,31 @@
 
         .subnav li {
             display: block;
+            position: relative;
+            top: auto;
+            left: auto;
+            min-width: auto;
             background: var(--dropdown-bg);
             color: var(--dropdown-text);
             border-top: 1px solid var(--dropdown-border);
             opacity: 1;
+            visibility: visible;
             transform: none;
             pointer-events: auto;
-            padding-left: 4rem; /* Indent subnav items */
+            padding-left: 4rem;
+            box-shadow: none;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .subnav:hover li {
+            opacity: 1;
+            visibility: visible;
+            transform: none;
         }
 
         .subnav li:hover {
             background: var(--dropdown-hover-bg);
-            transform: translateX(8px);
+            transform: translateX(4px);
         }
 
         /* Mobile navicon with animation */
