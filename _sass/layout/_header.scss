@@ -61,13 +61,37 @@
         padding: 0 1.5rem;
         color: var(--muted); /* Not hover = muted */
         background-color: var(--nav-bg); /* Same background for all nav items */
-        transition: all 0.3s ease;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Slide-in underline effect */
+    nav > ul > li::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: var(--accent);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transform: translateX(-50%);
     }
 
     nav > ul > li:hover {
         background: var(--nav-hover-bg);
         color: var(--accent); /* Hover = accent color */
         transform: translateY(-1px);
+    }
+
+    nav > ul > li:hover::after {
+        width: 70%;
+    }
+
+    /* Active state animation */
+    nav > ul > li:active {
+        transform: translateY(0) scale(0.98);
     }
 
     .subnav {
@@ -84,7 +108,21 @@
         padding: 0 1.5rem;
         line-height: 5rem;
         color: var(--muted); /* Not hover = muted */
-        transition: all 0.3s ease;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+    }
+
+    /* Dropdown arrow indicator */
+    .subnav > a::after {
+        content: '▾';
+        margin-left: 0.5rem;
+        font-size: 1.2rem;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        display: inline-block;
+    }
+
+    .subnav:hover > a::after {
+        transform: rotate(180deg);
     }
 
     .subnav > a:hover {
@@ -93,25 +131,37 @@
     }
 
     .subnav li {
-        display: none;
+        display: block;
         position: relative;
         z-index: 1000; /* Higher z-index to be above side panel */
         border-top: 1px solid var(--dropdown-border);
         background-color: var(--dropdown-bg);
         color: var(--dropdown-text);
-        transition: all 0.3s ease;
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         box-shadow: 0 2px 4px var(--dropdown-shadow);
         padding: 0 2rem; /* Add left and right padding */
         line-height: 4rem;
+        opacity: 0;
+        transform: translateY(-10px);
+        pointer-events: none;
     }
+
+    /* Staggered animation delays for dropdown items */
+    .subnav li:nth-child(1) { transition-delay: 0ms; }
+    .subnav li:nth-child(2) { transition-delay: 50ms; }
+    .subnav li:nth-child(3) { transition-delay: 100ms; }
+    .subnav li:nth-child(4) { transition-delay: 150ms; }
 
     .subnav li:hover {
         background-color: var(--dropdown-hover-bg);
         color: var(--text);
+        transform: translateX(4px);
     }
 
     .subnav:hover li {
-        display: block;
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
     }
 
     .search-and-theme {
@@ -136,20 +186,6 @@
         align-items: center;
     }
 
-    #search-input {
-        height: 3rem;
-        width: 100%;
-        border: 0;
-        border-radius: 4.5rem;
-        padding: 0 4rem 0 2rem;
-        color: var(--search-text);
-        border: 1px solid var(--search-border);
-        background-color: var(--search-bg);
-        transition: all 0.3s ease;
-        box-shadow: 0 2px 4px var(--search-shadow);
-        font-size: 1.6rem;
-    }
-
     .search-icon {
         position: absolute;
         right: 0.8rem;
@@ -163,7 +199,7 @@
         cursor: pointer;
         padding: 0;
         border-radius: 50%;
-        transition: all 0.3s ease;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         z-index: 10;
         display: flex;
         align-items: center;
@@ -173,6 +209,11 @@
     .search-icon:hover {
         background-color: var(--search-border);
         color: var(--accent);
+        transform: translateY(-50%) scale(1.1);
+    }
+
+    .search-icon:active {
+        transform: translateY(-50%) scale(0.95);
     }
 
     .search-icon i {
@@ -185,6 +226,25 @@
         display: inline-flex; /* Better flex alignment */
         align-items: center;
         justify-content: center;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .search-icon:hover i {
+        transform: rotate(15deg);
+    }
+
+    #search-input {
+        height: 3rem;
+        width: 100%;
+        border: 0;
+        border-radius: 4.5rem;
+        padding: 0 4rem 0 2rem;
+        color: var(--search-text);
+        border: 1px solid var(--search-border);
+        background-color: var(--search-bg);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 2px 4px var(--search-shadow);
+        font-size: 1.6rem;
     }
 
     #search-input:focus {
@@ -193,6 +253,7 @@
         box-shadow: inset 0 1px 1px var(--search-shadow), 0 0 8px var(--accent), 0 2px 8px var(--search-shadow);
         outline: none;
         border-color: var(--accent);
+        transform: scale(1.02);
     }
 
     .theme-switcher {
@@ -204,16 +265,34 @@
             font-size: 2rem;
             cursor: pointer;
             padding: 0.5rem;
-            border-radius: 4px;
-            transition: all 0.3s ease;
+            border-radius: 50%;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 1000; /* Ensure it's above other elements */
             display: flex; /* ADD: For proper icon alignment */
             align-items: center; /* ADD: Vertical center */
             justify-content: center; /* ADD: Horizontal center */
+            width: 4rem;
+            height: 4rem;
+
+            &::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                border-radius: 50%;
+                background: var(--nav-hover-bg);
+                opacity: 0;
+                transform: scale(0.8);
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
 
             &:hover {
                 color: var(--accent);
-                transform: scale(1.1);
+                transform: scale(1.1) rotate(15deg);
+            }
+
+            &:hover::before {
+                opacity: 1;
+                transform: scale(1);
             }
 
             &:focus {
@@ -221,13 +300,19 @@
                 outline-offset: 2px;
             }
 
+            &:active {
+                transform: scale(0.95) rotate(0deg);
+            }
+
             i {
-                transition: transform 0.3s ease;
+                transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                position: relative;
+                z-index: 1;
             }
         }
 
         .theme-toggle-button:hover i {
-            transform: scale(1.1);
+            transform: rotate(360deg);
         }
 
         .theme-toggle-button i {
@@ -291,12 +376,24 @@
         }
 
         .navbar {
-            display: none;
+            display: block;
             height: auto;
             position: absolute;
             top: 3.9rem;
             width: 100%;
             z-index: 200;
+            opacity: 0;
+            transform: translateY(-20px);
+            pointer-events: none;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            visibility: hidden;
+        }
+
+        .navbar.active {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+            visibility: visible;
         }
 
         .subnav {
@@ -305,20 +402,23 @@
             z-index: 100;
         }
 
-        .subnav:hover li {
-            display: block;
-        }
-
         .subnav li {
+            display: block;
             background: var(--dropdown-bg);
             color: var(--dropdown-text);
             border-top: 1px solid var(--dropdown-border);
+            opacity: 1;
+            transform: none;
+            pointer-events: auto;
+            padding-left: 4rem; /* Indent subnav items */
         }
 
         .subnav li:hover {
             background: var(--dropdown-hover-bg);
+            transform: translateX(8px);
         }
 
+        /* Mobile navicon with animation */
         .navicon {
             display: block;
             font-size: 3rem;
@@ -331,6 +431,24 @@
             width: 100%;
             padding-top: 0;
             background-color: var(--nav-bg);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .navicon a {
+            display: inline-block;
+            padding: 1rem;
+            color: var(--nav-text);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .navicon:hover a {
+            color: var(--accent);
+        }
+
+        .navicon.active a {
+            color: var(--accent);
+            transform: rotate(90deg);
         }
 
         nav > ul > li {
@@ -340,6 +458,31 @@
             margin-right: 2rem;
             border-bottom: 1px solid var(--border);
             color: var(--muted); /* Not hover = muted */
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Staggered animation for mobile nav items */
+        .navbar.active nav > ul > li:nth-child(1) { 
+            opacity: 1; 
+            transform: translateX(0); 
+            transition-delay: 50ms; 
+        }
+        .navbar.active nav > ul > li:nth-child(2) { 
+            opacity: 1; 
+            transform: translateX(0); 
+            transition-delay: 100ms; 
+        }
+        .navbar.active nav > ul > li:nth-child(3) { 
+            opacity: 1; 
+            transform: translateX(0); 
+            transition-delay: 150ms; 
+        }
+        .navbar.active nav > ul > li:nth-child(4) { 
+            opacity: 1; 
+            transform: translateX(0); 
+            transition-delay: 200ms; 
         }
 
         nav > ul > li:hover {
@@ -354,8 +497,28 @@
         .search {
             background-color: var(--nav-bg);
             padding-bottom: 1rem;
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        // Theme switcher styles are inherited from desktop version
+        .navbar.active .search {
+            opacity: 1;
+            transform: translateX(0);
+            transition-delay: 250ms;
+        }
+
+        /* Mobile theme switcher positioning */
+        .search-and-theme {
+            flex-direction: column;
+            gap: 1rem;
+            padding: 1rem;
+        }
+
+        .theme-switcher {
+            display: flex;
+            justify-content: center;
+            padding: 1rem 0;
+        }
     }
 }

@@ -1,7 +1,16 @@
 $('document').ready(function(){
-    $('.fa-navicon').click(function(e) {
+    // Mobile menu toggle with CSS animations
+    $('.navicon').click(function(e) {
         e.preventDefault();
+        $('.navbar').toggleClass('active');
+        $('.navicon').toggleClass('active');
+    });
 
-        $('.navbar').slideToggle('fast');
+    // Close mobile menu when clicking outside
+    $(document).click(function(e) {
+        if (!$(e.target).closest('.navicon, .navbar').length) {
+            $('.navbar').removeClass('active');
+            $('.navicon').removeClass('active');
+        }
     });
 });
