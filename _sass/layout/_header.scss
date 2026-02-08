@@ -135,10 +135,15 @@
         background-color: var(--nav-hover-bg);
     }
 
+    .subnav {
+        position: relative;
+        z-index: 1000;
+    }
+
     .subnav li {
         display: block;
         position: absolute;
-        z-index: 1000;
+        z-index: 1001;
         border-top: 1px solid var(--dropdown-border);
         background-color: var(--dropdown-bg);
         color: var(--dropdown-text);
@@ -149,7 +154,6 @@
         opacity: 0;
         visibility: hidden;
         transform: translateY(-10px);
-        pointer-events: none;
         min-width: 180px;
         left: 0;
         top: 100%;
@@ -166,11 +170,11 @@
         color: var(--text);
     }
 
-    .subnav:hover li {
+    .subnav:hover li,
+    .subnav li:hover {
         opacity: 1;
         visibility: visible;
         transform: translateY(0);
-        pointer-events: auto;
     }
 
     .search-and-theme {
