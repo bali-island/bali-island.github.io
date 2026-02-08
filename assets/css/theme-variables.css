@@ -30,12 +30,12 @@
   --nav-border: rgba(0, 0, 0, 0.1); /* Light mode border */
   --nav-shadow: rgba(0, 0, 0, 0.1); /* Light mode shadow */
   
-  /* Dropdown */
-  --dropdown-bg: var(--surface);
+  /* Dropdown - different from nav panel */
+  --dropdown-bg: rgba(255, 255, 255, 0.95); /* Different from nav-bg */
   --dropdown-text: var(--text);
-  --dropdown-hover-bg: rgba(0, 0, 0, 0.05); /* Light mode hover */
+  --dropdown-hover-bg: rgba(0, 0, 0, 0.08); /* Light mode hover overlay */
   --dropdown-border: rgba(0, 0, 0, 0.1); /* Light mode border */
-  --dropdown-shadow: rgba(0, 0, 0, 0.1); /* Light mode shadow */
+  --dropdown-shadow: rgba(0, 0, 0, 0.15); /* Light mode shadow */
   
   /* Search */
   --search-bg: var(--surface);
@@ -72,6 +72,8 @@
     --logo-text: #fffbed; /* Light color for logo */
     --nav-bg: var(--surface); /* Nav background same as cards */
     --nav-text: var(--text); /* Nav text color */
+    --dropdown-bg: #161b22; /* Darker than nav-bg in dark mode */
+    --dropdown-hover-bg: rgba(255, 255, 255, 0.1); /* Overlay hover in dark mode */
   }
 }
 
@@ -97,6 +99,8 @@
   --logo-text: #fffbed; /* Light color for logo */
   --nav-bg: var(--surface); /* Nav background same as cards */
   --nav-text: var(--text); /* Nav text color */
+  --dropdown-bg: #161b22; /* Darker than nav-bg in dark mode */
+  --dropdown-hover-bg: rgba(255, 255, 255, 0.1); /* Overlay hover in dark mode */
 }
 
 [data-theme="light"] {
@@ -120,4 +124,6 @@
   --logo-text: #fffbed; /* Light color for logo */
   --nav-bg: var(--surface); /* Nav background same as cards */
   --nav-text: var(--text); /* Nav text color */
+  --dropdown-bg: rgba(255, 255, 255, 0.95); /* Slightly transparent, different from nav */
+  --dropdown-hover-bg: rgba(0, 0, 0, 0.08); /* Overlay hover in light mode */
 }

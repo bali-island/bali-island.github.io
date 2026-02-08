@@ -25,16 +25,20 @@
 
     li > a {
         display: block;
+        color: inherit;
     }
 
     .navbar {
         background-color: var(--nav-bg); /* Nav background same as cards */
         box-shadow: 0 2px 4px var(--nav-shadow);
+        vertical-align: middle;
+        align-content: center;
+        display: flex;
+        align-items: stretch;
+        justify-content: flex-start;
+        flex-wrap: wrap;        
 
         i {
-            position: absolute;
-            top: 1.9rem;
-            right: 2.5rem;
             color: var(--nav-text);
         }
     }
@@ -173,6 +177,9 @@
     .search-icon i {
         font-size: 1.4rem;
         line-height: 1;
+        position: relative;
+        top: 0;
+        left: 0;
         vertical-align: middle; /* Override Font Awesome vertical-align */
         display: inline-flex; /* Better flex alignment */
         align-items: center;
@@ -223,6 +230,9 @@
         }
 
         .theme-toggle-button i {
+            position: relative;
+            top: 0;
+            left: 0;
             vertical-align: middle; /* Override Font Awesome vertical-align */
             display: inline-flex; /* Better flex alignment */
             align-items: center;
@@ -292,6 +302,10 @@
             height: auto;
             position: relative;
             z-index: 100;
+        }
+
+        .subnav:hover li {
+            display: block;
         }
 
         .subnav li {
