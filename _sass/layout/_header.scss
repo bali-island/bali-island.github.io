@@ -66,6 +66,11 @@
         overflow: hidden;
     }
 
+    /* Remove overflow hidden for subnav container to allow dropdown */
+    nav > ul > li:has(.subnav) {
+        overflow: visible;
+    }
+
     nav > ul > li a {
         text-decoration: none;
     }
