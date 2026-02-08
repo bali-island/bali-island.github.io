@@ -60,6 +60,7 @@
         border-right: 1px solid var(--nav-border);
         padding: 0 1.5rem;
         color: var(--muted); /* Not hover = muted */
+        background-color: var(--nav-bg); /* Same background for all nav items */
         transition: all 0.3s ease;
     }
 
@@ -73,7 +74,7 @@
         max-height: 5rem;
         position: relative;
         z-index: 1000; /* Higher z-index to be above side panel */
-        background-color: var(--dropdown-bg);
+        background-color: var(--nav-bg); /* Same as other nav items */
         border-radius: 4px;
         box-shadow: 0 4px 8px var(--dropdown-shadow);
     }
@@ -344,6 +345,10 @@
         nav > ul > li:hover {
             background: var(--nav-hover-bg);
             color: var(--accent); /* Hover = accent */
+        }
+
+        .subnav {
+            background-color: var(--nav-bg); /* Same as other nav items in mobile */
         }
 
         .search {
