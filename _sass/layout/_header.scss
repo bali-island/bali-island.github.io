@@ -173,6 +173,10 @@
     .search-icon i {
         font-size: 1.4rem;
         line-height: 1;
+        vertical-align: middle; /* Override Font Awesome vertical-align */
+        display: inline-flex; /* Better flex alignment */
+        align-items: center;
+        justify-content: center;
     }
 
     #search-input:focus {
@@ -216,6 +220,13 @@
 
         .theme-toggle-button:hover i {
             transform: scale(1.1);
+        }
+
+        .theme-toggle-button i {
+            vertical-align: middle; /* Override Font Awesome vertical-align */
+            display: inline-flex; /* Better flex alignment */
+            align-items: center;
+            justify-content: center;
         }
     }
 }
