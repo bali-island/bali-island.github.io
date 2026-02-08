@@ -59,13 +59,13 @@
         line-height: 5rem;
         border-right: 1px solid var(--nav-border);
         padding: 0 1.5rem;
-        color: var(--nav-text);
+        color: var(--muted); /* Not hover = muted */
         transition: all 0.3s ease;
     }
 
     nav > ul > li:hover {
         background: var(--nav-hover-bg);
-        color: var(--text);
+        color: var(--accent); /* Hover = accent color */
         transform: translateY(-1px);
     }
 
@@ -82,12 +82,12 @@
         display: block;
         padding: 0 1.5rem;
         line-height: 5rem;
-        color: var(--nav-text);
+        color: var(--muted); /* Not hover = muted */
         transition: all 0.3s ease;
     }
 
     .subnav > a:hover {
-        color: var(--accent);
+        color: var(--accent); /* Hover = accent */
         background-color: var(--nav-hover-bg);
     }
 
@@ -338,12 +338,12 @@
             width: 100%;
             margin-right: 2rem;
             border-bottom: 1px solid var(--border);
-            color: var(--nav-text);
+            color: var(--muted); /* Not hover = muted */
         }
 
         nav > ul > li:hover {
             background: var(--nav-hover-bg);
-            color: var(--text);
+            color: var(--accent); /* Hover = accent */
         }
 
         .search {
