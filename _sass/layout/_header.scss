@@ -63,30 +63,12 @@
         background-color: var(--nav-bg); /* Same background for all nav items */
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         position: relative;
-        overflow: hidden;
-    }
-
-    /* Slide-in underline effect */
-    nav > ul > li::after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        width: 0;
-        height: 2px;
-        background: var(--accent);
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        transform: translateX(-50%);
     }
 
     nav > ul > li:hover {
         background: var(--nav-hover-bg);
         color: var(--accent); /* Hover = accent color */
         transform: translateY(-1px);
-    }
-
-    nav > ul > li:hover::after {
-        width: 70%;
     }
 
     /* Active state animation */
@@ -132,18 +114,22 @@
 
     .subnav li {
         display: block;
-        position: relative;
-        z-index: 1000; /* Higher z-index to be above side panel */
+        position: absolute;
+        z-index: 1000;
         border-top: 1px solid var(--dropdown-border);
         background-color: var(--dropdown-bg);
         color: var(--dropdown-text);
-        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 0 2px 4px var(--dropdown-shadow);
-        padding: 0 2rem; /* Add left and right padding */
+        transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1), transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.25s;
+        box-shadow: 0 4px 12px var(--dropdown-shadow);
+        padding: 0 2rem;
         line-height: 4rem;
         opacity: 0;
+        visibility: hidden;
         transform: translateY(-10px);
         pointer-events: none;
+        min-width: 180px;
+        left: 0;
+        top: 100%;
     }
 
     /* Staggered animation delays for dropdown items */
@@ -155,11 +141,11 @@
     .subnav li:hover {
         background-color: var(--dropdown-hover-bg);
         color: var(--text);
-        transform: translateX(4px);
     }
 
     .subnav:hover li {
         opacity: 1;
+        visibility: visible;
         transform: translateY(0);
         pointer-events: auto;
     }
@@ -366,27 +352,74 @@
 @media (max-width: 768px) {
     #l-header {
         margin-bottom: 0;
-        height: 8rem;
+        position: relative;
 
         h1 {
-            font-size: 8rem;
-            line-height: 9.8rem;
-            letter-spacing: -0.7rem;
-            margin-left: -0.9rem;
+            font-size: 6rem;
+            line-height: 8rem;
+            letter-spacing: -0.5rem;
+            margin-left: -0.5rem;
         }
 
-        .navbar {
+        /* Navicon with header background */
+        .navicon {
             display: block;
+            font-size: 2.5rem;
+            height: 8rem;
+            line-height: 8rem;
+            text-align: right;
+            padding-right: 1.5rem;
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: auto;
+            background-color: transparent; /* Transparent, inherits from header */
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1001;
+        }
+
+        .navicon a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 5rem;
+            height: 5rem;
+            margin-top: 1.5rem;
+            color: var(--logo-text);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 50%;
+        }
+
+        .navicon:hover a {
+            color: var(--accent);
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        .navicon.active a {
+            color: var(--accent);
+            transform: rotate(90deg);
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        /* Mobile navbar - hidden by default */
+        .navbar {
+            display: flex;
+            flex-direction: column;
             height: auto;
             position: absolute;
-            top: 3.9rem;
+            top: 8rem;
+            left: 0;
             width: 100%;
             z-index: 200;
             opacity: 0;
-            transform: translateY(-20px);
+            transform: translateY(-10px);
             pointer-events: none;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
             visibility: hidden;
+            background-color: var(--nav-bg);
+            box-shadow: 0 4px 12px var(--nav-shadow);
+            margin-top: 0;
         }
 
         .navbar.active {
@@ -396,129 +429,125 @@
             visibility: visible;
         }
 
+        nav {
+            max-width: 100%;
+            width: 100%;
+        }
+
+        nav > ul {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        nav > ul > li {
+            text-align: left;
+            background-color: var(--nav-bg);
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            border-bottom: 1px solid var(--border);
+            border-right: none;
+            color: var(--muted);
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            float: none;
+        }
+
+        nav > ul > li > a {
+            padding: 0 2rem;
+            line-height: 5rem;
+        }
+
+        /* Staggered animation for mobile nav items */
+        .navbar.active nav > ul > li:nth-child(1) { opacity: 1; transform: translateX(0); transition-delay: 50ms; }
+        .navbar.active nav > ul > li:nth-child(2) { opacity: 1; transform: translateX(0); transition-delay: 100ms; }
+        .navbar.active nav > ul > li:nth-child(3) { opacity: 1; transform: translateX(0); transition-delay: 150ms; }
+        .navbar.active nav > ul > li:nth-child(4) { opacity: 1; transform: translateX(0); transition-delay: 200ms; }
+
+        nav > ul > li:hover {
+            background: var(--nav-hover-bg);
+            color: var(--accent);
+        }
+
+        /* Subnav in mobile */
         .subnav {
             height: auto;
             position: relative;
-            z-index: 100;
+            background-color: var(--nav-bg);
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        .subnav > a {
+            line-height: 5rem;
+            padding: 0 2rem;
         }
 
         .subnav li {
+            position: relative;
             display: block;
             background: var(--dropdown-bg);
             color: var(--dropdown-text);
             border-top: 1px solid var(--dropdown-border);
             opacity: 1;
+            visibility: visible;
             transform: none;
             pointer-events: auto;
-            padding-left: 4rem; /* Indent subnav items */
+            padding: 0 2rem 0 4rem;
+            left: auto;
+            top: auto;
+            min-width: auto;
+            box-shadow: none;
+            line-height: 4rem;
+        }
+
+        .subnav:hover li {
+            opacity: 1;
+            visibility: visible;
+            transform: none;
         }
 
         .subnav li:hover {
             background: var(--dropdown-hover-bg);
-            transform: translateX(8px);
+            transform: translateX(4px);
         }
 
-        /* Mobile navicon with animation */
-        .navicon {
-            display: block;
-            font-size: 3rem;
-            height: 4rem;
-            padding-top: 2.4rem;
-            text-align: right;
-            padding-right: 2rem;
-            position: absolute;
-            top: 0;
+        /* Search and theme container */
+        .search-and-theme {
+            float: none;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 1.5rem 2rem;
             width: 100%;
-            padding-top: 0;
-            background-color: var(--nav-bg);
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .navicon a {
-            display: inline-block;
-            padding: 1rem;
-            color: var(--nav-text);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .navicon:hover a {
-            color: var(--accent);
-        }
-
-        .navicon.active a {
-            color: var(--accent);
-            transform: rotate(90deg);
-        }
-
-        nav > ul > li {
-            text-align: center;
-            background-color: var(--nav-bg);
-            width: 100%;
-            margin-right: 2rem;
-            border-bottom: 1px solid var(--border);
-            color: var(--muted); /* Not hover = muted */
+            margin-top: 0;
             opacity: 0;
-            transform: translateX(-30px);
+            transform: translateX(-20px);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Staggered animation for mobile nav items */
-        .navbar.active nav > ul > li:nth-child(1) { 
-            opacity: 1; 
-            transform: translateX(0); 
-            transition-delay: 50ms; 
-        }
-        .navbar.active nav > ul > li:nth-child(2) { 
-            opacity: 1; 
-            transform: translateX(0); 
-            transition-delay: 100ms; 
-        }
-        .navbar.active nav > ul > li:nth-child(3) { 
-            opacity: 1; 
-            transform: translateX(0); 
-            transition-delay: 150ms; 
-        }
-        .navbar.active nav > ul > li:nth-child(4) { 
-            opacity: 1; 
-            transform: translateX(0); 
-            transition-delay: 200ms; 
-        }
-
-        nav > ul > li:hover {
-            background: var(--nav-hover-bg);
-            color: var(--accent); /* Hover = accent */
-        }
-
-        .subnav {
-            background-color: var(--nav-bg); /* Same as other nav items in mobile */
-        }
-
-        .search {
-            background-color: var(--nav-bg);
-            padding-bottom: 1rem;
-            opacity: 0;
-            transform: translateX(-30px);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .navbar.active .search {
+        .navbar.active .search-and-theme {
             opacity: 1;
             transform: translateX(0);
             transition-delay: 250ms;
         }
 
-        /* Mobile theme switcher positioning */
-        .search-and-theme {
-            flex-direction: column;
-            gap: 1rem;
-            padding: 1rem;
+        .search {
+            flex: 1;
+            max-width: none;
+            background-color: transparent;
+            padding-bottom: 0;
+            margin-top: 0;
         }
 
         .theme-switcher {
             display: flex;
             justify-content: center;
-            padding: 1rem 0;
+            padding: 0;
         }
     }
 }
