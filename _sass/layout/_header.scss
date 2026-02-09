@@ -148,17 +148,11 @@
 
     /* Trigger dropdown on parent hover */
     nav > ul > li:hover .subnav {
-        max-height: 500px;
+        max-height: 50rem; /* Responsive max-height for dropdown content */
     }
 
-    .subnav .subnav-trigger {
-        display: block;
-        position: relative;
-        padding: 0;
-        margin: 0;
-    }
-
-    .subnav .subnav-trigger > a {
+    /* Subnav items - POST link now directly in parent li */
+    nav > ul > li.has-subnav > a {
         display: flex;
         align-items: center;
         gap: 0.5rem;
@@ -170,7 +164,7 @@
         text-decoration: none;
     }
 
-    .subnav .subnav-trigger > a:hover {
+    nav > ul > li.has-subnav > a:hover {
         color: var(--accent); /* Hover = accent */
         background-color: var(--nav-hover-bg);
     }
@@ -183,7 +177,7 @@
     }
 
     /* Rotate expand icon on hover */
-    .subnav:hover .subnav-trigger .material-icons {
+    nav > ul > li.has-subnav:hover .material-icons {
         transform: rotate(180deg);
     }
 
@@ -435,12 +429,11 @@
         }
 
         .subnav.open {
-            max-height: 500px; /* Max height to reveal content */
+            max-height: 50rem; /* Responsive max-height for dropdown content */
             overflow: visible;
         }
 
-        .subnav li,
-        .subnav li:not(.subnav-trigger) {
+        .subnav li {
             display: block;
             position: relative;
             top: auto;
@@ -458,15 +451,13 @@
             transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .subnav:hover li,
-        .subnav:hover li:not(.subnav-trigger) {
+        .subnav:hover li {
             opacity: 1;
             visibility: visible;
             transform: none;
         }
 
-        .subnav li:hover,
-        .subnav li:not(.subnav-trigger):hover {
+        .subnav li:hover {
             background: var(--dropdown-hover-bg);
             transform: translateX(4px);
         }
