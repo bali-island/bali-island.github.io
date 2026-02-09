@@ -16,11 +16,11 @@
         color: var(--logo-text); /* Always light color for logo */
     }
 
-        p {
-            font: normal bold 3rem/3rem "verdana",sans-serif;
-            text-align: right;
-            margin: 3rem;
-            color: var(--logo-text); /* Always light color for logo */
+    p {
+        font: normal bold 3rem/3rem "verdana",sans-serif;
+        text-align: right;
+        margin: 3rem;
+        color: var(--logo-text); /* Always light color for logo */
     }
 
     li > a {
@@ -28,32 +28,64 @@
         color: inherit;
     }
 
+    /* Flexbox container for header */
+    .header-content {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    /* Logo section flex layout */
+    .logo-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .brand {
+        flex: 1;
+    }
+
+    .shoutbox {
+        flex: 0 0 auto;
+    }
+
     .navbar {
         background-color: var(--nav-bg); /* Nav background same as cards */
         box-shadow: 0 2px 4px var(--nav-shadow);
-        vertical-align: middle;
-        align-content: center;
         display: flex;
-        align-items: stretch;
-        justify-content: flex-start;
-        flex-wrap: wrap;        
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 2rem;
+        padding: 0 1rem;
 
         i {
             color: var(--nav-text);
         }
     }
 
-    nav {
-        max-width: 60%;
+    .main-nav {
+        flex: 1;
+        min-width: 0; /* Prevent flex child overflow */
     }
 
     .navicon {
         display: none;
     }
 
+    nav > ul {
+        display: flex;
+        align-items: center;
+        gap: 0;
+    }
+
     nav > ul > li {
-        width: auto;
-        float: left;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: visible; /* Always visible to allow dropdown */
         text-align: center;
         font-size: 2rem;
         line-height: 5rem;
@@ -62,8 +94,6 @@
         color: var(--muted); /* Not hover = muted */
         background-color: var(--nav-bg); /* Same background for all nav items */
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        position: relative;
-        overflow: visible; /* Always visible to allow dropdown */
     }
 
     nav > ul > li a {
@@ -98,6 +128,7 @@
         transform: translateY(0) scale(0.98);
     }
 
+    /* Subnav dropdown */
     .subnav {
         position: absolute;
         top: 100%;
@@ -108,7 +139,8 @@
         border-radius: 0 0 4px 4px;
         box-shadow: 0 4px 8px var(--dropdown-shadow);
         transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        min-width: 180px;
+        min-width: 200px;
+        z-index: 10;
     }
 
     /* Trigger dropdown on parent hover */
@@ -124,7 +156,9 @@
     }
 
     .subnav .subnav-trigger > a {
-        display: block;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
         padding: 0 1.5rem;
         line-height: 5rem;
         color: var(--muted); /* Not hover = muted */
@@ -133,24 +167,24 @@
         text-decoration: none;
     }
 
-    /* Dropdown arrow indicator */
-    .subnav .subnav-trigger > a::after {
-        content: '▾';
-        margin-left: 0.5rem;
-        font-size: 1.2rem;
-        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        display: inline-block;
-    }
-
-    .subnav:hover .subnav-trigger > a::after {
-        transform: rotate(180deg);
-    }
-
     .subnav .subnav-trigger > a:hover {
         color: var(--accent); /* Hover = accent */
         background-color: var(--nav-hover-bg);
     }
 
+    /* Material Icons sizing */
+    .material-icons {
+        font-size: 1.8rem;
+        vertical-align: middle;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Rotate expand icon on hover */
+    .subnav:hover .subnav-trigger .material-icons {
+        transform: rotate(180deg);
+    }
+
+    /* Subnav items */
     .subnav li:not(.subnav-trigger) {
         display: block;
         position: static;
@@ -160,7 +194,9 @@
         transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         padding: 0 2rem;
         line-height: 4rem;
-        min-width: 180px;
+        width: 100%;
+        opacity: 1;
+        visibility: visible;
     }
 
     .subnav li:hover {
@@ -169,12 +205,10 @@
     }
 
     .search-and-theme {
-        float: right;
         display: flex;
         align-items: center;
-        justify-content: flex-end; /* Align items to the right */
         gap: 1rem;
-        padding-right: 1rem; /* Right padding for spacing */
+        padding-right: 1rem;
     }
 
     .search {
@@ -219,23 +253,6 @@
         transform: translateY(-50%) scale(0.95);
     }
 
-    .search-icon i {
-        font-size: 1.4rem;
-        line-height: 1;
-        position: relative;
-        top: 0;
-        left: 0;
-        vertical-align: middle; /* Override Font Awesome vertical-align */
-        display: inline-flex; /* Better flex alignment */
-        align-items: center;
-        justify-content: center;
-        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .search-icon:hover i {
-        transform: rotate(15deg);
-    }
-
     #search-input {
         height: 3rem;
         width: 100%;
@@ -261,7 +278,7 @@
 
     .theme-switcher {
         .theme-toggle-button {
-            position: relative; /* Required for z-index to work */
+            position: relative;
             background: none;
             border: none;
             color: var(--logo-text); /* Same color as header title */
@@ -475,6 +492,10 @@
         .navicon.active a {
             color: var(--accent);
             transform: rotate(90deg);
+        }
+
+        nav > ul {
+            display: block;
         }
 
         nav > ul > li {
