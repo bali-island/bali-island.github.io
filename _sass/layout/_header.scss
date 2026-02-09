@@ -90,6 +90,8 @@
         text-align: center;
         font-size: 2rem;
         line-height: 5rem;
+        height: auto;
+        min-height: 5rem;
         border-right: 1px solid var(--nav-border);
         padding: 0 1.5rem;
         color: var(--muted); /* Not hover = muted */
