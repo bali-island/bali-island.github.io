@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/media/hakim/HDD/f-docker/my-web-server/pages/ghub/bali-island.github.io/"
+      ]
+    }
+  }
+}
