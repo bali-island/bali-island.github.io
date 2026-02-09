@@ -63,12 +63,7 @@
         background-color: var(--nav-bg); /* Same background for all nav items */
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         position: relative;
-        overflow: hidden;
-    }
-
-    /* Remove overflow hidden for subnav container to allow dropdown */
-    nav > ul > li:has(.subnav) {
-        overflow: visible;
+        overflow: visible; /* Always visible to allow dropdown */
     }
 
     nav > ul > li a {
@@ -104,12 +99,21 @@
     }
 
     .subnav {
-        max-height: 5rem;
-        position: relative;
-        z-index: 1000; /* Higher z-index to be above side panel */
-        background-color: var(--nav-bg); /* Same as other nav items */
-        border-radius: 4px;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        max-height: 0;
+        overflow: hidden;
+        background-color: var(--dropdown-bg);
+        border-radius: 0 0 4px 4px;
         box-shadow: 0 4px 8px var(--dropdown-shadow);
+        transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        min-width: 180px;
+    }
+
+    /* Trigger dropdown on parent hover */
+    nav > ul > li:hover .subnav {
+        max-height: 500px;
     }
 
     .subnav .subnav-trigger {
@@ -149,48 +153,28 @@
 
     .subnav li:not(.subnav-trigger) {
         display: block;
-        position: absolute;
-        z-index: 1001;
+        position: static;
         border-top: 1px solid var(--dropdown-border);
         background-color: var(--dropdown-bg);
         color: var(--dropdown-text);
-        transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1), transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.25s;
-        box-shadow: 0 4px 12px var(--dropdown-shadow);
+        transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         padding: 0 2rem;
         line-height: 4rem;
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(-10px);
         min-width: 180px;
-        left: 0;
-        top: 100%;
     }
-
-    /* Staggered animation delays for dropdown items */
-    .subnav li:nth-child(2) { transition-delay: 0ms; top: 100%; }
-    .subnav li:nth-child(3) { transition-delay: 50ms; top: calc(100% + 4rem); }
-    .subnav li:nth-child(4) { transition-delay: 100ms; top: calc(100% + 8rem); }
-    .subnav li:nth-child(5) { transition-delay: 150ms; top: calc(100% + 12rem); }
 
     .subnav li:hover {
         background-color: var(--dropdown-hover-bg);
         color: var(--text);
     }
 
-    .subnav:hover li:not(.subnav-trigger) {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-    }
-
     .search-and-theme {
         float: right;
         display: flex;
         align-items: center;
-        justify-content: flex-end; /* ADD: Align items to the right */
+        justify-content: flex-end; /* Align items to the right */
         gap: 1rem;
-        z-index: 1000; /* Ensure it's above other elements */
-        padding-right: 1rem; /* ADD: Right padding for spacing */
+        padding-right: 1rem; /* Right padding for spacing */
     }
 
     .search {
@@ -277,7 +261,7 @@
 
     .theme-switcher {
         .theme-toggle-button {
-            position: relative; /* ADD: Required for z-index to work */
+            position: relative; /* Required for z-index to work */
             background: none;
             border: none;
             color: var(--logo-text); /* Same color as header title */
@@ -286,10 +270,9 @@
             padding: 0.5rem;
             border-radius: 50%;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 1000; /* Ensure it's above other elements */
-            display: flex; /* ADD: For proper icon alignment */
-            align-items: center; /* ADD: Vertical center */
-            justify-content: center; /* ADD: Horizontal center */
+            display: flex; /* For proper icon alignment */
+            align-items: center; /* Vertical center */
+            justify-content: center; /* Horizontal center */
             width: 4rem;
             height: 4rem;
 
@@ -394,12 +377,19 @@
             margin-left: -0.9rem;
         }
 
+        .container {
+            width: 94%;
+            margin: 0 auto;
+            padding: 0 3%;
+        }
+
         .navbar {
             display: block;
             height: auto;
             position: absolute;
             top: 3.9rem;
-            width: 100%;
+            width: 94%;
+            left: 3%;
             z-index: 200;
             opacity: 0;
             transform: translateY(-20px);
@@ -418,7 +408,8 @@
         .subnav {
             height: auto;
             position: relative;
-            z-index: 100;
+            max-height: none;
+            overflow: visible;
         }
 
         .subnav li,
