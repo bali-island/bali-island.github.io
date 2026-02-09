@@ -67,6 +67,7 @@
     }
 
     .main-nav {
+        display: flex;
         flex: 1;
         min-width: 0; /* Prevent flex child overflow */
     }
